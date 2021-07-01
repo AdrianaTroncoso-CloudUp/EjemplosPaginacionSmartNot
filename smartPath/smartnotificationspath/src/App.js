@@ -36,9 +36,9 @@ function App() {
       console.log(`*URL + path parameters: ${urlPath}`);
       const resp = await axios.get(urlPath, headers);
       const responseJSON = resp.data;
-      setTemplates(responseJSON);
+      setTemplates(responseJSON.data.data);
+      console.log(responseJSON);
       console.log(responseJSON.data);
-      console.log(responseJSON.data.data);
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -57,10 +57,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <ul>
-          { !templates ? 'Cargando...' : `${console.log(templates)}`
-          // templates.map((templates, index) => {
-          //   return <li>{templates.template_id}</li>
-          // })
+          { !templates ? 'Cargando...' : 
+          templates.map((templates, index) => {
+            return <li  key={index}>{templates.template_id, templates.template_name}</li>
+          })  
           }
         </ul>
       </header>
